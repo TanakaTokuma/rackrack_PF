@@ -8,9 +8,12 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+
   scope module: :public do
 
-    resources :books
+    get "books/search"
+
+    resources :books, except: [:new, :edit, :update]
 
   end
 

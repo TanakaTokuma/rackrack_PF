@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2022_07_16_063629) do
     t.string "publisher"
     t.string "saledate"
     t.text "caption"
+    t.boolean "read_st"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

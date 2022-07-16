@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="search_form">
+        <h2>追加したい本を検索してみよう</h2><br>
+        <%= form_with url: books_search_path, method: :get, local: true do |f| %>
+          <div class="input-group">
+          <%= f.text_field :keyword, placeholder: "タイトル、著者など" %>
+          <span class="input-group-btn">
+          <%= f.submit "検索", class: "btn btn-primary" %>
+          </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!--<div class="row">-->
+    <!--  <div class="col-6">-->
+    <!--    <h6>読みたい本</h6>-->
+    <!--    <table class="table table-hover">-->
+    <!--      <thead>-->
+    <!--        <tr>-->
+    <!--          <th>タイトル</th>-->
+    <!--          <th>著者</th>-->
+    <!--          <th>出版社</th>-->
+    <!--        </tr>-->
+    <!--      </thead>-->
+    <!--      <tbody>-->
+    <!--        <#% @not_read.each do |not_read| %>-->
+    <!--        <tr>-->
+    <!--          <th><#%= not_read.title %></th>-->
+    <!--          <th><#%= not_read.author %></th>-->
+    <!--          <th><#%= not_read.publisher_name %></th>-->
+    <!--        </tr>-->
+    <!--        <#% end %>-->
+    <!--      </tbody>-->
+    <!--    </table>-->
+    <!--  </div>-->
+
+    <!--  <div class="col-6">-->
+
+    <!--  </div>-->
+    <!--</div>-->
+  </div>
+</div>
