@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="border border-success">
+    <div class="row">
+      <div class="col-6">
+        <!--.split('?')[0]で、画像urlを?以前と以降で2つに分けて、?以前側を0、?以降側を1として、0側を表示してる-->
+        <!--classのimg-fluidは、画像をレスポンシブ対応にしている-->
+        <%= image_tag @book.image_url.split('?')[0], size: '300x350',  class: 'm-1 img-fluid' %>
+      </div>
+      <div class="col-6">
+        <p><h5><%= @book.title %></h5></p>
+          <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>著者</td>
+              <td><%= @book.author %></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>出版社</td>
+              <td><%= @book.publisher %></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>出版日</td>
+              <td><%= @book.saledate %></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>あらすじ</p>
+        <p><%= @book.caption %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% if @book.read_st == false %>
+    <div class="col-6">
+      <%= form_with model: @book, url: book_path(@book.id) do |f| %>
+        <%= f.hidden_field :read_st, :value => true %>
+        <br><%= f.submit "読んだ本に移動", class: "btn btn-outline-primary btn-block" %>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <br><%= link_to '削除する', book_path(@book.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-block" %>
+    </div>
+    <% else %>
+    <br><%= link_to '削除する', book_path(@book.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-block" %>
+
+
+
+
+
+    <% end %>
+  </div>
+
+
+</div>
+

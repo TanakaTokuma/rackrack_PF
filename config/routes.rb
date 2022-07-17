@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
     get "books/search"
 
-    resources :books, except: [:new, :edit, :update]
+    resources :books, except: [:new, :edit]
 
   end
 

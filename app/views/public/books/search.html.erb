@@ -15,7 +15,7 @@
         <% if @books.present? %>
         <% @books.each do |book| %>
           <tr>
-            <td><%= link_to (image_tag(book.large_image_url, size: '100x120')), book.item_url %></td>
+            <td><%= link_to (image_tag(book.large_image_url, size: '100x140')), book.item_url %></td>
             <td><%= link_to (book.title), book.item_url %></td>
             <td>
                 <!--bookにauthorクラス(ハッシュでは無い)があった場合に実行-->
@@ -40,7 +40,7 @@
               <% if book.respond_to?(:publisher_name) %>
                 <%= f.hidden_field :publisher, :value => book.publisher_name %>
               <% end %>
-              <%= f.hidden_field :salesdate, :value => book.sales_date %>
+              <%= f.hidden_field :saledate, :value => book.sales_date %>
               <%= f.hidden_field :caption, :value => book.item_caption %>
               <%= f.select :read_st, [['読みたい',false], ['読んだ',true]] %><%= f.submit "に追加する", class: "btn btn-success" %>
               <% end %>

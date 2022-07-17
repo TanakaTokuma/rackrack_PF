@@ -3,9 +3,7 @@ class Public::BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
-
     book.save
-
     redirect_to books_path
   end
 
@@ -16,6 +14,23 @@ class Public::BooksController < ApplicationController
     # 読みたい本を@not_read_booksに追加
     @not_read_books = Book.where(read_st: false)
 
+  end
+
+  def show
+    @book = Book.find(params[:id])
+
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    redirect_to book_path(@book.id)
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
 

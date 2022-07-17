@@ -28,7 +28,7 @@
         <tbody>
           <% @not_read_books.each do |not_read_books| %>
           <tr>
-            <td><%= not_read_books.title %></td>
+            <td><%= link_to not_read_books.title, book_path(not_read_books.id) %></td>
             <td><%= not_read_books.author %></td>
             <td><%= not_read_books.publisher %></td>
           </tr>
@@ -49,7 +49,7 @@
         <tbody>
           <% @read_books.each do |read_books| %>
           <tr>
-            <td><%= read_books.title %></td>
+            <td><%= link_to read_books.title, book_path(read_books.id) %></td>
             <td><%= read_books.author %></td>
             <td><%= read_books.publisher %></td>
           </tr>
