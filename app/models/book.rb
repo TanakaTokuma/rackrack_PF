@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   
-  has_one_attached :image
+  # imageにurlが入らないらしいので、コメントアウト中
+  # has_one_attached :image
 
   has_many :posts
 

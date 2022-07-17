@@ -13,32 +13,49 @@
         <% end %>
       </div>
     </div>
-    <!--<div class="row">-->
-    <!--  <div class="col-6">-->
-    <!--    <h6>読みたい本</h6>-->
-    <!--    <table class="table table-hover">-->
-    <!--      <thead>-->
-    <!--        <tr>-->
-    <!--          <th>タイトル</th>-->
-    <!--          <th>著者</th>-->
-    <!--          <th>出版社</th>-->
-    <!--        </tr>-->
-    <!--      </thead>-->
-    <!--      <tbody>-->
-    <!--        <#% @not_read.each do |not_read| %>-->
-    <!--        <tr>-->
-    <!--          <th><#%= not_read.title %></th>-->
-    <!--          <th><#%= not_read.author %></th>-->
-    <!--          <th><#%= not_read.publisher_name %></th>-->
-    <!--        </tr>-->
-    <!--        <#% end %>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
-    <!--  </div>-->
-
-    <!--  <div class="col-6">-->
-
-    <!--  </div>-->
-    <!--</div>-->
+  </div>
+  <div class="row-xl">
+    <div class="col-xl center-block">
+      <br><h5>読みたい本</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>著者</th>
+            <th>出版社</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @not_read_books.each do |not_read_books| %>
+          <tr>
+            <td><%= not_read_books.title %></td>
+            <td><%= not_read_books.author %></td>
+            <td><%= not_read_books.publisher %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xl center-block">
+      <br><h5>読んだ本</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>著者</th>
+            <th>出版社</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @read_books.each do |read_books| %>
+          <tr>
+            <td><%= read_books.title %></td>
+            <td><%= read_books.author %></td>
+            <td><%= read_books.publisher %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

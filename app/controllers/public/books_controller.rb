@@ -3,19 +3,20 @@ class Public::BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
-    
+
     book.save
-    
+
     redirect_to books_path
   end
 
   def index
-    # 振り分けるには
-    # @read = Book.where(read_st: true)
-    # @not_read　= Book.where(read_st: false)
-    # みたいな感じ？
-  end
 
+    # 読んだ本を@read_booksに追加
+    @read_books = Book.where(read_st: true)
+    # 読みたい本を@not_read_booksに追加
+    @not_read_books = Book.where(read_st: false)
+
+  end
 
 
   def search
@@ -29,7 +30,7 @@ class Public::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:image, :title, :author, :publisher, :saledate, :caption, :read_st)
+    params.require(:book).permit(:image_url, :title, :author, :publisher, :saledate, :caption, :read_st)
   end
 
 
