@@ -1,0 +1,56 @@
+  <div class="row-xl">
+    <div class="col-xl center-block">
+      <br><br><h5>読みたい本</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>カテゴリ</th>
+            <th>著者</th>
+            <th>出版社</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% not_read_books.each do |not_read_books| %>
+          <% if not_read_books.customer_id == current_customer.id %>
+          <tr>
+            <td><%= link_to not_read_books.title, book_path(not_read_books.id) %></td>
+            <td><% if not_read_books.category.present? %>
+              <%= link_to not_read_books.category, books_category_search_path(keyword: not_read_books.category) %>
+            </td><% end %>
+            <td><%= not_read_books.author %></td>
+            <td><%= not_read_books.publisher %></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xl center-block">
+      <br><h5>読んだ本</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>カテゴリ</th>
+            <th>著者</th>
+            <th>出版社</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% read_books.each do |read_books| %>
+          <% if read_books.customer_id == current_customer.id %>
+          <tr>
+            <td><%= link_to read_books.title, book_path(read_books.id) %></td>
+            <td><% if read_books.category.present? %>
+              <%= link_to read_books.category, books_category_search_path(keyword: read_books.category) %>
+            </td><% end %>
+            <td><%= read_books.author %></td>
+            <td><%= read_books.publisher %></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

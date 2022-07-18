@@ -13,7 +13,13 @@ Rails.application.routes.draw do
 
     get "books/search"
 
-    resources :books, except: [:new, :edit]
+    get "books/category_search"
+
+    resources :books, except: [:new, :edit] do
+
+      resources :posts, only: [:create, :destroy]
+
+    end
 
   end
 

@@ -4,12 +4,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # deviseの機能を使う前にメソッドを実行
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   # 新規登録後のパス
   def after_sign_in_path_for(resource)
-    root_path
+    books_path
   end
-  
+
 
   protected
 

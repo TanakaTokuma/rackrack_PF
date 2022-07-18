@@ -5,7 +5,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # ログイン後のパス(後で変更する)
   def after_sign_in_path_for(resource)
-    root_path
+    books_path
   end
 
   # ログアウト後のパス

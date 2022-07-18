@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="border border-success">
+  <br><div class="border border-success">
     <div class="row">
       <div class="col-6">
         <!--.split('?')[0]で、画像urlを?以前と以降で2つに分けて、?以前側を0、?以降側を1として、0側を表示してる-->
@@ -27,33 +27,84 @@
               <td><%= @book.saledate %></td>
             </tr>
           </tbody>
+          <tbody>
+            <tr>
+              <td>カテゴリ</td>
+              <td>
+                <!--カテゴリがあったら削除を表示、無かったらフォームを表示-->
+                <%= form_with model: @book, url: book_path(@book.id) do |f| %>
+                  <% if @book.category.present? %>
+                    <%= link_to @book.category, books_category_search_path(keyword: @book.category) %>
+                    <%= f.hidden_field :category, :value => nil %>
+                    <%= f.submit "削除", class: "btn btn-outline-danger btn-sm" %>
+                    <% else %>
+                    <div class="input-group">
+                    <%= f.text_field :category, placeholder: "カテゴリを入力" %>
+                    <%= f.submit "登録", class: "btn btn-outline-primary btn-sm" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
         </table>
         <p>あらすじ</p>
         <p><%= @book.caption %></p>
       </div>
     </div>
   </div>
+
   <div class="row">
+    <!--読んでない本ならこっちを表示-->
+
     <% if @book.read_st == false %>
-    <div class="col-6">
-      <%= form_with model: @book, url: book_path(@book.id) do |f| %>
-        <%= f.hidden_field :read_st, :value => true %>
-        <br><%= f.submit "読んだ本に移動", class: "btn btn-outline-primary btn-block" %>
-      <% end %>
-    </div>
-    <div class="col-6">
-      <br><%= link_to '削除する', book_path(@book.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-block" %>
-    </div>
+      <div class="col-6">
+        <%= form_with model: @book, url: book_path(@book.id) do |f| %>
+          <%= f.hidden_field :read_st, :value => true %>
+          <br><%= f.submit "読んだ本に移動", class: "btn btn-outline-primary btn-block" %>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <br><%= link_to '本を削除する', book_path(@book.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-block" %>
+      </div>
     <% else %>
-    <br><%= link_to '削除する', book_path(@book.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-block" %>
-
-
-
-
-
-    <% end %>
   </div>
 
+  <!--読んだ本ならこっちを表示-->
+
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @post, local: true do |f| %>
+      <div class="field" id="star">
+        <br><%= f.label :rate, "星評価する：" %>
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
+      <script>
+          $('#star').raty({
+            size     : 38,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'post[rate]',
+            half: true,
+          });
+          </script>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <br><%= render "public/posts/index", book: @book %>
+      <br><%= render "public/posts/form", book: @book, comment: @comment %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6"></div>
+    <div class="col-6"><br><%= link_to '本を削除する', book_path(@book.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-block" %></div>
+  </div>
+    <% end %>
 
 </div>
 

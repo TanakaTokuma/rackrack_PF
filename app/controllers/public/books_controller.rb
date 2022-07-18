@@ -1,8 +1,11 @@
 class Public::BooksController < ApplicationController
 
+  before_action :authenticate_customer!
+
 
   def create
     book = Book.new(book_params)
+    book.customer_id = current_customer.id
     book.save
     redirect_to books_path
   end
@@ -18,7 +21,7 @@ class Public::BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-
+    @comment = Post.new
   end
 
   def update
@@ -33,19 +36,26 @@ class Public::BooksController < ApplicationController
     redirect_to books_path
   end
 
-
   def search
-
     if params[:keyword].present? # keywordが入力されているかどうか確認
       @books = RakutenWebService::Books::Total.search(keyword: params[:keyword])
     end
-
   end
+
+  def category_search
+    @book = Book.new
+    @books = Book.search(params[:keyword])
+    @read_books = @books.where(read_st: true)
+    @not_read_books = @books.where(read_st: false)
+    @category_name = Book.find(params[:keyword])
+  end
+
+
 
   private
 
   def book_params
-    params.require(:book).permit(:image_url, :title, :author, :publisher, :saledate, :caption, :read_st)
+    params.require(:book).permit(:image_url, :title, :author, :publisher, :saledate, :category, :caption, :read_st)
   end
 
 

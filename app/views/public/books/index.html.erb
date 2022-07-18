@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <div class="search_form">
-        <h2>追加したい本を検索してみよう</h2><br>
+        <br><h2>追加したい本を検索してみよう</h2>
         <%= form_with url: books_search_path, method: :get, local: true do |f| %>
           <div class="input-group">
           <%= f.text_field :keyword, placeholder: "タイトル、著者など" %>
@@ -14,48 +14,5 @@
       </div>
     </div>
   </div>
-  <div class="row-xl">
-    <div class="col-xl center-block">
-      <br><h5>読みたい本</h5>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>著者</th>
-            <th>出版社</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @not_read_books.each do |not_read_books| %>
-          <tr>
-            <td><%= link_to not_read_books.title, book_path(not_read_books.id) %></td>
-            <td><%= not_read_books.author %></td>
-            <td><%= not_read_books.publisher %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-xl center-block">
-      <br><h5>読んだ本</h5>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>著者</th>
-            <th>出版社</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @read_books.each do |read_books| %>
-          <tr>
-            <td><%= link_to read_books.title, book_path(read_books.id) %></td>
-            <td><%= read_books.author %></td>
-            <td><%= read_books.publisher %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= render "index", not_read_books: @not_read_books, read_books: @read_books %>
 </div>

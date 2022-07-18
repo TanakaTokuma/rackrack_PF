@@ -1,0 +1,15 @@
+<table>
+  <tbody>
+      <% book.posts.each do |book_comment| %>
+        <div class="border">
+          <tr>
+            <td><%= book_comment.comment %>
+              <% if book_comment.customer == current_customer %>
+                <%= link_to "削除", book_post_path(book, book_comment), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+              <% end %>
+            </td>
+          </tr>
+        </div>
+      <% end %>
+  </tbody>
+</table>
