@@ -4,7 +4,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
 
       t.integer :customer_id
       t.integer :book_id
-      t.float :rate
       t.text :comment
 
       t.timestamps

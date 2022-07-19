@@ -3,6 +3,9 @@
     <div class="col text-center">
       <h2>ログイン</h2>
       <h7>rackrackに登録済みの方は、下記からログインして下さい。</h7>
+      <h7>※ゲストログインはこちら</h7><br>
+      <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+
     </div>
   </div>
   <%= form_with model: @customer, url: customer_session_path do |f| %>

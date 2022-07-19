@@ -2,6 +2,12 @@
 
 class Public::SessionsController < Devise::SessionsController
 
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to books_path
+  end
+
 
   # ログイン後のパス(後で変更する)
   def after_sign_in_path_for(resource)

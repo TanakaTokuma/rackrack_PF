@@ -8,6 +8,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :publisher
       t.string :saledate
       t.string :category
+      t.float :rate
       t.text :caption
       t.boolean :read_st
 

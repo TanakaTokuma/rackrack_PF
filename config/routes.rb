@@ -11,9 +11,15 @@ Rails.application.routes.draw do
 
   scope module: :public do
 
+    post 'guest_sign_in', to: 'sessions#guest_sign_in'
+
+    post "rates/create"
+
     get "books/search"
 
     get "books/category_search"
+
+    resource :customers, only: [:show]
 
     resources :books, except: [:new, :edit] do
 
@@ -30,6 +36,13 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+
+  namespace :admin do
+
+    resources :customers, only: [:show, :index, :update]
+    resources :posts, only: [:show, :destroy]
+
+  end
 
 
 end

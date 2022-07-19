@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2022_07_17_080818) do
     t.string "publisher"
     t.string "saledate"
     t.string "category"
+    t.float "rate"
     t.text "caption"
     t.boolean "read_st"
     t.datetime "created_at", precision: 6, null: false
@@ -83,7 +84,6 @@ ActiveRecord::Schema.define(version: 2022_07_17_080818) do
   create_table "posts", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "book_id"
-    t.float "rate"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col center-block">
+      <br><h3>会員詳細</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <tr>
+          <th>会員ID</th>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @customer.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <td>
+            <% if @customer.is_deleted == false %>
+              <span class="label label-primary">
+              <p class="text-success">有効会員</p>
+              </span>
+              <% else %>
+              <span class="label label-danger">
+                <p class="text-danger">無効会員</p>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>コメントした本</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |books| %>
+          <% if @customer.id == books.customer_id %>
+          
+          <tr>
+            <td><%= books.title %></td>
+            <td><%= link_to "コメントを見る", admin_post_path(books.id) %></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= form_with model: @customer, url: admin_customer_path do |f| %>
+    <%= f.hidden_field :is_deleted, :value => true %>
+    <%= f.submit "退会させる", class: "btn btn-outline-danger" %>
+    <% end %>
+  </div>
+</div>

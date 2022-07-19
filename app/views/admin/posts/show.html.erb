@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>コメント一覧</h3>
+      <% @book.posts.each do |book_comment| %>
+        <div class="border p-2 m-2">
+          <%= book_comment.comment %>
+          <%= link_to "削除", admin_post_path(@book, book_comment), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

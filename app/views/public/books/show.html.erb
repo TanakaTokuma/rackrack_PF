@@ -46,6 +46,25 @@
                 <% end %>
               </td>
             </tr>
+            <tr>
+              <% if @book.rate.present? %>
+              <td>評価</td>
+              <td>
+                <span id="star-rate-<%= @book.id %>"></span>
+                <script>
+                  $('#star-rate-<%= @book.id %>').raty({
+                    size: 38,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= @book.rate %>,
+                  });
+                </script>
+              </td>
+              <% end %>
+            </tr>
           </tbody>
         </table>
         <p>あらすじ</p>
@@ -72,12 +91,15 @@
 
   <!--読んだ本ならこっちを表示-->
 
+  <!--星評価ゾーン-->
   <div class="row">
     <div class="col">
-      <%= form_with model: @post, local: true do |f| %>
+      <%= form_with model: [@book, @rate], url: rates_create_path, local: true do |f| %>
       <div class="field" id="star">
-        <br><%= f.label :rate, "星評価する：" %>
-        <%= f.hidden_field :rate, id: :review_star %>
+        <br><%= f.label :rate, "星評価：" %>
+        <%= f.hidden_field :rate, id: :star %>
+        <%= f.hidden_field :id, :value => @book.id %>
+        <%= f.submit "評価する", class: "btn btn-outline-warning" %>
       </div>
       <script>
           $('#star').raty({
@@ -85,7 +107,7 @@
             starOff:  '<%= asset_path('star-off.png') %>',
             starOn : '<%= asset_path('star-on.png') %>',
             starHalf: '<%= asset_path('star-half.png') %>',
-            scoreName: 'post[rate]',
+            scoreName: 'book[rate]',
             half: true,
           });
           </script>

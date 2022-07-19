@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <br><h2><%= @category_name %>カテゴリの本を表示</h2>
+      <br><h2><%= @category_name.category %> カテゴリの本を表示</h2>
     </div>
   </div>
   <%= render "index", not_read_books: @not_read_books, read_books: @read_books %>

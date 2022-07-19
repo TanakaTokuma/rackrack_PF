@@ -22,6 +22,7 @@ class Public::BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @comment = Post.new
+    @rate = Book.new
   end
 
   def update
@@ -47,7 +48,8 @@ class Public::BooksController < ApplicationController
     @books = Book.search(params[:keyword])
     @read_books = @books.where(read_st: true)
     @not_read_books = @books.where(read_st: false)
-    @category_name = Book.find(params[:keyword])
+    # binding.pry
+    @category_name = Book.find_by(category: params[:keyword])
   end
 
 
