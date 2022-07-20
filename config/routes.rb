@@ -4,14 +4,21 @@ Rails.application.routes.draw do
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
+   # get "/some/route" => "some_devise_controller"
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+    scope module: :public do
+     post 'guest_sign_in', to: 'sessions#guest_sign_in'
+    end
+  end
+
 
   scope module: :public do
 
-    post 'guest_sign_in', to: 'sessions#guest_sign_in'
+    #post 'guest_sign_in', to: 'sessions#guest_sign_in'
 
     post "rates/create"
 

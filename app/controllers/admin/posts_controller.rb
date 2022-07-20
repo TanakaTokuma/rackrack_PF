@@ -9,7 +9,7 @@ class Admin::PostsController < ApplicationController
     #@comment = Post.find(params[:id])
     #@comment.destroy
     # binding.pry
-    Post.find_by(id: params[:id], book_id: params[:book_id]).destroy
+    Post.find(params[:id]).destroy
     redirect_to request.referer
   end
 

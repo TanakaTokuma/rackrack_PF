@@ -48,7 +48,7 @@
         <tbody>
           <% @books.each do |books| %>
           <% if @customer.id == books.customer_id %>
-          
+
           <tr>
             <td><%= books.title %></td>
             <td><%= link_to "コメントを見る", admin_post_path(books.id) %></td>
@@ -62,7 +62,7 @@
   <div class="text-center">
     <%= form_with model: @customer, url: admin_customer_path do |f| %>
     <%= f.hidden_field :is_deleted, :value => true %>
-    <%= f.submit "退会させる", class: "btn btn-outline-danger" %>
+    <%= f.submit "退会させる", data: { confirm: '本当に削除しますか？'}, class: "btn btn-outline-danger" %>
     <% end %>
   </div>
 </div>

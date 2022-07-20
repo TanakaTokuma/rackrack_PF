@@ -13,9 +13,9 @@ class Public::BooksController < ApplicationController
   def index
 
     # 読んだ本を@read_booksに追加
-    @read_books = Book.where(read_st: true)
+    @read_books = Book.where(read_st: true, customer_id: current_customer.id)
     # 読みたい本を@not_read_booksに追加
-    @not_read_books = Book.where(read_st: false)
+    @not_read_books = Book.where(read_st: false, customer_id: current_customer.id)
 
   end
 
@@ -57,7 +57,7 @@ class Public::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:image_url, :title, :author, :publisher, :saledate, :category, :caption, :read_st)
+    params.require(:book).permit(:image_url, :rakuten_url, :title, :author, :publisher, :saledate, :category, :caption, :read_st)
   end
 
 

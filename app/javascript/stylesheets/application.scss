@@ -2,11 +2,11 @@
 
 
 
-.top-main {
-  position: relative;
-}
+// .top_col {
+//   position: relative;
+// }
 
-.top-main p {
+.col-top {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -15,12 +15,37 @@
   transform: translate(-50%,-50%);
   margin:0;
   padding:0;
+  color: white;
 }
 
-.top-main image {
-  width: 100%;
-  height: 500px;
+// .top_image {
+//   width: 100%;
+//   height: 500px;
+// }
+
+
+.container-top {
+    width: 100%;
+    height: 800px;
+    background-image: url(/top2.jpg);
+    background-size: cover;
+    opacity: 0.9;
+    position: relative;
 }
 
-
+.container-top:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
 

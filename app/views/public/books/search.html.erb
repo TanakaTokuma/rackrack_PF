@@ -33,6 +33,7 @@
             <td>
               <%= form_with model: @book, scope: :book, url: books_path, method: :post do |f| %>
               <%= f.hidden_field :image_url, :value => book.large_image_url %>
+              <%= f.hidden_field :rakuten_url, :value => book.item_url %>
               <%= f.hidden_field :title, :value => book.title %>
               <% if book.respond_to?(:author) %>
                 <%= f.hidden_field :author, :value => book.author %>
@@ -42,7 +43,7 @@
               <% end %>
               <%= f.hidden_field :saledate, :value => book.sales_date %>
               <%= f.hidden_field :caption, :value => book.item_caption %>
-              <%= f.select :read_st, [['読みたい',false], ['読んだ',true]] %><%= f.submit "に追加する", class: "btn btn-success" %>
+              <%= f.select :read_st, [['読みたい',false], ['読み終わった',true]] %><%= f.submit "に追加する", class: "btn btn-success" %>
               <% end %>
             </td>
           </tr>

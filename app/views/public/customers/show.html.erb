@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <br><h3 class="text-secondary">投稿数データ</h3><br>
+      <br><h3 class="text-secondary">本登録数データ</h3><br>
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>今日の投稿数</th>
-            <th>昨日の投稿数</th>
+            <th>今日の登録数</th>
+            <th>昨日の登録数</th>
           </tr>
         </thead>
         <tbody>
@@ -16,12 +16,32 @@
           </tr>
         </tbody>
       </table>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>今週の登録数</th>
+            <th>先週の登録数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @this_week_book.count %></td>
+            <td><%= @last_week_book.count %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <br><h3 class="text-secondary">今週の本登録数データ</h3>
-      <br></br><%= column_chart @books.group_by_day_of_week(:created_at, format: "%a").count, width: "100%", height: "500px" %>
+      <br><h3 class="text-secondary">今週の登録数データグラフ</h3>
+      <br></br><%= column_chart @books.group_by_day_of_week(:created_at, format: "%a").count, width: "100%", height: "500px" %><br></br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <br><h3 class="text-secondary">今月の登録数データグラフ</h3>
+      <br></br><%= column_chart @books.group_by_day_of_month(:created_at).count, width: "100%", height: "500px" %>
     </div>
   </div>
 </div>

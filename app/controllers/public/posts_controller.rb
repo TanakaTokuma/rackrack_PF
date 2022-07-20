@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
     if @comment.save
       redirect_to request.referer
     else
-      redirect_to request.referer
+      redirect_to request.referer, alert: "内容を入力して下さい"
     end
   end
 
