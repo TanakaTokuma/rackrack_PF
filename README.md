@@ -35,5 +35,4 @@ rackrackとは、棚であるrackと、楽々、をかけ合わせたもの
 
 ## 使用素材
 ### 写真素材
-- pexels様
-  ->https://www.pexels.com/ja-jp/
+pexels様 ->https://www.pexels.com/ja-jp/
