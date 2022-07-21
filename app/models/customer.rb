@@ -12,6 +12,7 @@ class Customer < ApplicationRecord
     find_or_create_by!(email: 'guest@example.com') do |customer|
       # SecureRandom.urlsafe_base64でランダムに64の文字数列を生成
       customer.password = SecureRandom.urlsafe_base64
+      customer.name = "ゲスト"
     end
   end
 

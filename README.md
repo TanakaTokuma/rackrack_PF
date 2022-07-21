@@ -26,9 +26,6 @@ rackrackとは、棚であるrackと、楽々、をかけ合わせたもの
 - 読んだ本の内容を記録しておきたい時
 - 気になる本をストックしておきたい時
 
-## 設計書
-<...>
-
 ## 開発環境
 - OS：Windows 11 Home
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -37,4 +34,6 @@ rackrackとは、棚であるrackと、楽々、をかけ合わせたもの
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です
+### 写真素材
+- pexels様
+  ->https://www.pexels.com/ja-jp/

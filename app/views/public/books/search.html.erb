@@ -43,7 +43,8 @@
               <% end %>
               <%= f.hidden_field :saledate, :value => book.sales_date %>
               <%= f.hidden_field :caption, :value => book.item_caption %>
-              <%= f.select :read_st, [['読みたい',false], ['読み終わった',true]] %><%= f.submit "に追加する", class: "btn btn-success" %>
+              <%= f.select :read_st, [['読みたい',false], ['読み終わった',true]] %><br>
+              <br><%= f.submit "に追加する", class: "btn btn-outline-success" %>
               <% end %>
             </td>
           </tr>
