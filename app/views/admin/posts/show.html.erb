@@ -5,7 +5,7 @@
       <% @book.posts.each do |book_comment| %>
         <div class="border p-2 m-2">
           <%= book_comment.comment %>
-          <%= link_to "削除", admin_post_path(book_comment), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+          <%= link_to "削除", admin_post_path(book_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
         </div>
       <% end %>
     </div>

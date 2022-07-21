@@ -1,0 +1,18 @@
+<%= form_with model: [book, rate], url: rates_create_path, local: true do |f| %>
+  <div class="field" id="star">
+    <br><%= f.label :rate, "星評価：" %>
+    <%= f.hidden_field :rate, id: :star %>
+    <%= f.hidden_field :id, :value => book.id %>
+    <%= f.submit "評価する", class: "btn btn-outline-warning" %>
+  </div>
+  <script>
+    $('#star').raty({
+      size     : 38,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'book[rate]',
+      half: true,
+    });
+  </script>
+<% end %>

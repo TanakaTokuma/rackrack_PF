@@ -6,8 +6,15 @@ class Public::BooksController < ApplicationController
   def create
     book = Book.new(book_params)
     book.customer_id = current_customer.id
-    book.save
-    redirect_to books_path
+    # 重複確認
+    # ログインしてるカスタマーに紐づいたBookの情報から.pluckでtitleだけ取り出して、.include?(book_para,s[:title])で登録しようとしてるtitleがあるか確認してる。
+    # 最初の!で無かったらに意味が反転している。
+    if !current_customer.books.pluck(:title).include?(book_params[:title])
+      book.save
+      redirect_to books_path
+    else
+      redirect_to request.referer, alert: "すでに登録済みです"
+    end
   end
 
   def index

@@ -6,12 +6,20 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @books = Book.where(read_st: true)
+    @books = Book.where(read_st: true,)
   end
 
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
+    redirect_to admin_customers_path
+  end
+
+  # 退会させるボタンを押したら動く
+  def withdrawal
+    @customer = Customer.find(params[:id])
+    @customer.update(is_deleted: true)
+    reset_session
     redirect_to admin_customers_path
   end
 

@@ -1,0 +1,20 @@
+<tr>
+  <!--星レビューがあったら表示、無かったら非表示-->
+  <% if book.rate.present? %>
+  <td>評価</td>
+  <td>
+    <span id="star-rate-<%= book.id %>"></span>
+    <script>
+      $('#star-rate-<%= book.id %>').raty({
+        size: 38,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= book.rate %>,
+      });
+    </script>
+  </td>
+  <% end %>
+</tr>

@@ -7,6 +7,8 @@ class Customer < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :posts, dependent: :destroy
 
+  validates :name, presence: true
+
   # emailとpasswordを生成
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |customer|
