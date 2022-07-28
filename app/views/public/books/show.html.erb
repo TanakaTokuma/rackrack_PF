@@ -1,5 +1,11 @@
 <div class="container">
+  <!--読みたい本なら緑枠線、読んだ本なら青枠線-->
+  <% if @book.read_st == false %>
   <br><div class="border border-success">
+  <% else %>
+  <br><div class="border border-primary">
+  <% end %>
+
     <div class="row">
       <div class="col-6">
         <!--.split('?')[0]で、画像urlを?以前と以降で2つに分けて、?以前側を0、?以降側を1として、0側を表示してる-->
@@ -51,7 +57,7 @@
       <div class="col-6">
         <%= form_with model: @book, url: book_path(@book.id) do |f| %>
           <%= f.hidden_field :read_st, :value => true %>
-          <br><%= f.submit "読んだ本に移動", class: "btn btn-outline-primary btn-block" %>
+          <br><%= f.submit "読み終わった本に移動", class: "btn btn-outline-primary btn-block" %>
         <% end %>
       </div>
       <div class="col-6">

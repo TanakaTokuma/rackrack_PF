@@ -3,7 +3,7 @@ class Public::BooksController < ApplicationController
   before_action :authenticate_customer!
 
 
-  def create
+  def create # 検索した本の登録
     book = Book.new(book_params)
     book.customer_id = current_customer.id
     # 重複確認
@@ -32,7 +32,7 @@ class Public::BooksController < ApplicationController
     @rate = Book.new
   end
 
-  def update
+  def update #読み終わったに
     @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to book_path(@book.id)

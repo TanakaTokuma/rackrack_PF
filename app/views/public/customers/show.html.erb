@@ -35,13 +35,13 @@
   <div class="row">
     <div class="col">
       <br><h3 class="text-secondary">今週の登録数データグラフ</h3>
-      <br></br><%= column_chart @books.group_by_day_of_week(:created_at, format: "%a").count, width: "100%", height: "500px" %><br></br>
+      <br></br><%= column_chart @this_week_book.group_by_day_of_week(:created_at, format: "%a").count, width: "100%", height: "500px" %><br></br>
     </div>
   </div>
   <div class="row">
     <div class="col">
       <br><h3 class="text-secondary">今月の登録数データグラフ</h3>
-      <br></br><%= column_chart @books.group_by_day_of_month(:created_at).count, width: "100%", height: "500px" %>
+      <br></br><%= column_chart @this_month_book.group_by_day_of_month(:created_at).count, width: "100%", height: "500px" %>
     </div>
   </div>
 </div>
