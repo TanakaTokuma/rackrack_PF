@@ -1,6 +1,7 @@
 <% book.posts.each do |book_comment| %>
   <div class="border p-2 m-2">
     <%= book_comment.comment %>
+    <div class="text-black-50">感情分析スコア[<p class="d-inline text-primary"><%= book_comment.score %></p>]</div>
     <% if book_comment.customer == current_customer %>
       <%= link_to "削除", book_post_path(book, book_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
     <% end %>

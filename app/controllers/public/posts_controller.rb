@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = current_customer.posts.new(post_params)
     @comment.book_id = @book.id
+    @comment.score = Language.get_data(post_params[:comment])
     if @comment.save
       redirect_to request.referer
     else
