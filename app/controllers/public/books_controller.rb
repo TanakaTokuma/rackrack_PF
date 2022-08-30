@@ -53,7 +53,7 @@ class Public::BooksController < ApplicationController
   def category_search
     @book = Book.new
     @books = Book.search(params[:keyword])
-    @read_books = @books.where(read_st: true)
+    @read_books = @books.where(read_st: true, customer_id: current_customer.id)
     @not_read_books = @books.where(read_st: false)
     # binding.pry
     @category_name = Book.find_by(category: params[:keyword])
